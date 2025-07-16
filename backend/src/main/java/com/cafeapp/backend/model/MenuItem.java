@@ -7,11 +7,11 @@ public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
-    private String name;
+    public String name;
 
-    private double price;
+    public double price;
 
     public MenuItem() {
     }
@@ -31,17 +31,22 @@ public class MenuItem {
 
     public String getName() {
         return name;
+    } public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Ürün adı boş olamaz.");
+        }
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            throw new IllegalArgumentException("Fiyat negatif olamaz.");
+        }
     }
 }
