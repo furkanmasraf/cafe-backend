@@ -41,6 +41,9 @@ public class MenuItemController {
         return repository.findById(id).map(item -> {
             item.setName(updatedItem.getName());
             item.setPrice(updatedItem.getPrice());
+            item.setDescription(updatedItem.getDescription());
+            item.setCategory(updatedItem.getCategory());
+            item.setAvailable(updatedItem.isAvailable());
             return ResponseEntity.ok(repository.save(item));
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
