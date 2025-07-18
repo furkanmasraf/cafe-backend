@@ -1,36 +1,65 @@
 package com.cafeapp.backend.controller;
 
-import com.cafeapp.backend.model.OrderEntity;
-import com.cafeapp.backend.repository.OrderRepository;
-import org.springframework.web.bind.annotation.*;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/orders")
-@CrossOrigin("*")
+@Entity
+@Table(name = "orders")
 public class OrderController {
 
-    private final OrderRepository orderRepo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public OrderController(OrderRepository orderRepo) {
-        this.orderRepo = orderRepo;
+    @Column(name = "table_number")
+    private int tableNumber;
+
+    @Column(name = "total_price")
+    private double totalPrice;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+
+    public OrderController() {
+        this.createdAt = LocalDateTime.now(); // otomatik tarih atama
     }
 
-    @PostMapping
-    public OrderEntity createOrder(@RequestBody OrderEntity order) {
-        return orderRepo.save(order);
+    public OrderController(int tableNumber, double totalPrice) {
+        this.tableNumber = tableNumber;
+        this.totalPrice = totalPrice;
+        this.createdAt = LocalDateTime.now();
     }
 
-    @GetMapping
-    public List<OrderEntity> getAllOrders() {
-        return orderRepo.findAll();
+    public Long getId() {
+        return id;
     }
 
-    @PutMapping("/{id}/pay")
-    public OrderEntity payOrder(@PathVariable Long id) {
-        OrderEntity order = orderRepo.findById(id).orElseThrow();
-        order.setPaid(true);
-        return orderRepo.save(order);
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
