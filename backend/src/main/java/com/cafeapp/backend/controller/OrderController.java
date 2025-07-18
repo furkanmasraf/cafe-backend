@@ -20,7 +20,7 @@ public class OrderController {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    // Constructorlar
+
     public OrderController() {
         this.createdAt = LocalDateTime.now(); // otomatik tarih atama
     }
@@ -30,8 +30,6 @@ public class OrderController {
         this.totalPrice = totalPrice;
         this.createdAt = LocalDateTime.now();
     }
-
-    // Getter ve Setter'lar
 
     public Long getId() {
         return id;
