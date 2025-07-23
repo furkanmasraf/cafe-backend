@@ -1,5 +1,6 @@
 package com.cafeapp.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,23 +14,10 @@ public class TableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("tableNumber")
     private int masaNo;
 
+    @JsonProperty("status")
     private String durum; // "Boş", "Dolu", "Rezerve"
-    public int getMasaNo() {
-        return masaNo;
-    }
-
-    public void setMasaNo(int masaNo) {
-        this.masaNo = masaNo;
-    }
-
-    public String getDurum() {
-        return durum;
-    }
-
-    public void setDurum(String durum) {
-        this.durum = durum;
-    }
 
 }

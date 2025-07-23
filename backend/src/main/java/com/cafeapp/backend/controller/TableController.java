@@ -24,6 +24,7 @@ public class TableController {
 
     @PostMapping
     public TableEntity addTable(@RequestBody TableEntity table) {
+        System.out.println("🔥 Yeni masa eklendi → Masa " + table.getMasaNo() + ", Durum: " + table.getDurum());
         return repository.save(table);
     }
 
