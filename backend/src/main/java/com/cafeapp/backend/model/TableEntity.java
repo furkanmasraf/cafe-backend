@@ -2,7 +2,9 @@ package com.cafeapp.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -19,5 +21,4 @@ public class TableEntity {
 
     @JsonProperty("status")
     private String durum; // "Boş", "Dolu", "Rezerve"
-
 }
