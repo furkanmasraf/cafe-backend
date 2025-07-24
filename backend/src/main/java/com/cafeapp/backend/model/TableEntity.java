@@ -21,4 +21,18 @@ public class TableEntity {
 
     @JsonProperty("status")
     private String durum; // "Boş", "Dolu", "Rezerve"
+
+    public String getMasaNo() {
+        return "";
+    }
+
+    public void setMasaNo(String masaNo) {
+    }
+
+    public String getDurum() {
+        return "";
+    }
+
+    public void setDurum(String durum) {
+    }
 }
