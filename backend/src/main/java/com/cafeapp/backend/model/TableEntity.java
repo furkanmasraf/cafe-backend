@@ -1,12 +1,9 @@
 package com.cafeapp.backend.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "tables")
 public class TableEntity {
 
     @Id
@@ -14,8 +11,26 @@ public class TableEntity {
     private Long id;
 
     private int masaNo;
+    private String durum = "BOŞ"; // "BOŞ", "DOLU", "HESAP_ISTENDI", "REZERVE"
+    private int capacity = 4;
 
-    private String durum; // "Boş", "Dolu", "Rezerve"
+    public TableEntity() {
+    }
+
+    public TableEntity(int masaNo, String durum, int capacity) {
+        this.masaNo = masaNo;
+        this.durum = durum;
+        this.capacity = capacity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getMasaNo() {
         return masaNo;
     }
@@ -32,4 +47,11 @@ public class TableEntity {
         this.durum = durum;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }

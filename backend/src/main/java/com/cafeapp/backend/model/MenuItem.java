@@ -3,22 +3,43 @@ package com.cafeapp.backend.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "menu_items")
 public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
+    private double price;
 
-    public double price;
+    @Column(length = 1000)
+    private String description;
+
+    private String category;
+    
+    @Column(length = 1000)
+    private String imageUrl;
+
+    @Column(length = 1000)
+    private String ingredients;
+
+    private boolean available = true;
+
+    private String targetPrinter; // MUTFAK, BAR, PASTA
 
     public MenuItem() {
     }
 
-    public MenuItem(String name, double price) {
+    public MenuItem(String name, double price, String description, String category, String imageUrl, String ingredients, boolean available, String targetPrinter) {
         this.name = name;
         this.price = price;
+        this.description = description;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.ingredients = ingredients;
+        this.available = available;
+        this.targetPrinter = targetPrinter;
     }
 
     public Long getId() {
@@ -31,25 +52,19 @@ public class MenuItem {
 
     public String getName() {
         return name;
-    } public void setName(String name) {
-        if (name != null && !name.trim().isEmpty()) {
-            this.name = name;
-        } else {
-            throw new IllegalArgumentException("Ürün adı boş olamaz.");
-        }
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
-        if (price >= 0) {
-            this.price = price;
-        } else {
-            throw new IllegalArgumentException("Fiyat negatif olamaz.");
-        }
+        this.price = price;
     }
-    private String description;
 
     public String getDescription() {
         return description;
@@ -58,7 +73,6 @@ public class MenuItem {
     public void setDescription(String description) {
         this.description = description;
     }
-    private String category;
 
     public String getCategory() {
         return category;
@@ -67,7 +81,22 @@ public class MenuItem {
     public void setCategory(String category) {
         this.category = category;
     }
-    private boolean available = true;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public boolean isAvailable() {
         return available;
@@ -75,5 +104,13 @@ public class MenuItem {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public String getTargetPrinter() {
+        return targetPrinter;
+    }
+
+    public void setTargetPrinter(String targetPrinter) {
+        this.targetPrinter = targetPrinter;
     }
 }
